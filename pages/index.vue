@@ -13,8 +13,11 @@
           </b-button>
         </div>
         <div class="login" v-if="logged">
-          <b-button id="profileButton" class="back button is-light boton is-rounded profile" tag="router-link" :to="{ path: '/panel/profile' }">
+          <b-button id="profileButton" class="back button is-light boton is-rounded" tag="router-link" :to="{ path: '/panel/profile' }">
             Profile
+          </b-button>
+          <b-button id="logoutButton" @click="logout" class="back button is-light boton is-rounded">
+            Logout
           </b-button>
         </div>
       </div>
@@ -64,6 +67,7 @@ export default {
   },
   methods: {
     async logout () {
+      console.log('logout')
       await this.$auth.logout()
       this.$auth.$storage.removeUniversal('email')
       this.$auth.$storage.removeUniversal('token')
@@ -79,12 +83,12 @@ export default {
 </script>
 
 <style scoped>
-#loginButton {
+#loginButton, #profileButton {
   background: #fff0;
   border: #ffffff solid 1px;
   color: white;
 }
-#signupButton, #profileButton {
+#signupButton, #logoutButton {
   background: linear-gradient(to right, #48c78e, #48c78e);
   color: #ffffff;
 }
